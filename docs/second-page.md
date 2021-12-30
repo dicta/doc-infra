@@ -38,6 +38,6 @@ A new paragraph of text.
 * Can we quote in a list?
 
   > quote-a-line!
-  >
   > And it doesn't break
+
 * Ok maybe it does
