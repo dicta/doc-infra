@@ -1,0 +1,10 @@
+Files in this directory are configuration for NetlifyCMS and are
+deployed as-is to the published site. This allows for graphical
+editing of the published content which will generate PRs back to
+this repository.
+
+To configure a repository/organization to be able to use this
+content management system (login via GitHub), follow the linked
+instructions:
+
+https://docs.netlify.com/visitor-access/oauth-provider-tokens/#using-an-authentication-provider
