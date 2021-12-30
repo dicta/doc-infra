@@ -12,18 +12,18 @@ jobs:
     name: Deploy docs
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout main
+      - name: checkout master
         uses: actions/checkout@v2
-      - name: Python setup
+      - name: python setup
         uses: actions/setup-python@v2
         with:
           python-version: '3.8'
-      - name: Deploy docs
-        uses: mhausenblas/mkdocs-deploy-gh-pages@master
-        # Or use mhausenblas/mkdocs-deploy-gh-pages@nomaterial to build without the mkdocs-material theme
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # CUSTOM_DOMAIN: optionaldomain.com
-          CONFIG_FILE: mkdocs.yml
-          REQUIREMENTS: requirements.txt
-          EXTRA_PACKAGES: gcc libxml2 libxslt libxslt-dev libxml2-dev
+      - name: configure remote for deployment
+        run: |
+          git config --global user.name ${GITHUB_ACTOR}
+          git config --global user.email ${GITHUB_ACTOR}@users.noreply.github.com
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}
+      - name: mkdocs install
+        run: pip3 install -r requirements.txt
+      - name: mkdocs deploy
+        run: mkdocs gh-deploy --force
