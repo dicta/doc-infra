@@ -1,0 +1,25 @@
+spellchecker: hunspell
+matrix:
+- name: markdown
+  pipeline:
+  - pyspelling.filters.text
+      # Parse as text, then filter out some markdown constructs, then parse as markdown
+  - pyspelling.filters.context:
+      context_visible_first: true
+      escapes: '\\[\\`~]'
+      delimiters:
+      # Ignore multiline content between fences (fences can have 3 or more back ticks)
+      # ```
+      # content
+      # ```
+      - open: '(?s)(?P<open> *`{1,})'
+        close: '(?P=open)'
+  - pyspelling.filters.markdown:
+      markdown_extensions:
+      - pymdownx.highlight
+      - pymdownx.superfences
+      - markdown.extensions.toc
+      - markdown.extensions.attr_list
+  sources:
+  - 'docs/**/*.md'
+  default_encoding: utf-8

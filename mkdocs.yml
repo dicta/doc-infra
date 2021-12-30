@@ -1,0 +1,32 @@
+site_name: Docs Test Site
+copyright: 'Copyright © 2022'
+strict: true
+
+theme:
+  name: 'material'
+  favicon: 'img/favicon.ico'
+  logo: 'img/logo-white.png'
+  features:
+    - navigation.tabs
+
+nav:
+    - Home: index.md
+
+use_directory_urls: false
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - attr_list
+
+plugins:
+  - search
+  - awesome-pages
+  - git-revision-date-localized
+  - minify:
+      minify_html: true
+  - htmlproofer:
+      raise_error: true
