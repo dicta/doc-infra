@@ -1,0 +1,21 @@
+backend:
+  name: github
+  # change repo to your git repository url
+  repo: dicta/doc-infra
+  branch: master
+  cms_label_prefix: pr/content/
+
+# Configures where images uploaded from the UI are stored.
+media_folder: docs/assets
+public_folder: /assets
+
+publish_mode: editorial_workflow
+
+collections:
+  - label: "Documents"
+    name: "docs"
+    folder: "docs"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
